@@ -52,7 +52,7 @@ namespace PizzaStore.Models.Handlers
             new IngredientModel { name ="chocolate", price = 500, type = "sweet" },
             new IngredientModel { name ="strawberries", price = 700, type = "sweet" },
             new IngredientModel { name ="nutella", price = 650, type = "sweet" },
-            new IngredientModel { name ="banana", price = 600, type = "sweet" },
+            new IngredientModel { name ="banana", price = 600, type = "sweet" }
         };
 
             return ingredients;
