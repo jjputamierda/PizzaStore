@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace PizzaStore.Pages
 {
-    public class MostrarPrecioModel : PageModel
+    public class LocalizationModel : PageModel
     {
         public void OnGet()
         {

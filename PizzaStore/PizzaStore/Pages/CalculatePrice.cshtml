@@ -4,138 +4,29 @@
 @{
     ViewData["Title"] = "Calculate price of pizza";
 }
+@using PizzaStore.Utilidades
+<h1>The price of your pizza is @Model.totalPrice ₡</h1>
 
-<h1>The price of your pizza is 0</h1>
-<h2>Please select at least 1 ingredient, mass and toast option for your pizza </h2>
-<h3>You have ordered @Model.pizzaQuantity pizzas</h3>
 
 <form method="post">
+    
+           
     <div class="container">
         <div class="row">
-            <div class="btn-group" style="margin-top: 25px">
-
-                <button type="button" class="btn btn-info">Select Ingredient</button>
-                <button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    <span class="caret"></span>
-                    <span class="sr-only">Toggle Dropdown</span>
-                </button>
-                <ul class="dropdown-menu">
-                    @if (Model.pizzaQuantity >= 0)
-                    {
-                        string tipo = "";
-                        @for (int actualIngredient = 0; actualIngredient < Model.oldIngredients.Count(); ++actualIngredient)
-
-                        {
-                            if (tipo != Model.oldIngredients[actualIngredient].type)
-                            {
-
-                                tipo = Model.oldIngredients[actualIngredient].type;
-                                <li role="separator" class="divider"></li>
-
-                                <li class="dropdown-header">@Html.Raw(Model.oldIngredients[actualIngredient].type)</li>
-                                <li role="separator" class="divider"></li>
-
-                                <li style="margin: 5px 5px" class="text-primary"><input type="checkbox" name="newIngredients" value="@Model.oldIngredients[actualIngredient].name"> @Model.oldIngredients[actualIngredient].name</li>
-
-                            }
-                            else
-                            {
-                                <li style="margin: 5px 5px" class="text-primary"><input type="checkbox" name="newIngredients" value="@Model.oldIngredients[actualIngredient].name"> @Model.oldIngredients[actualIngredient].name</li>
-                            }
-                        }
-                    }
-                </ul>
+            <div class="col-md-2">
+                <input id="btnCreate" type="submit" class="btn-primary" asp-page-handler="Eeturn" value="Return" style="width: 150px" />
             </div>
-            <div class="btn-group" style="margin-top: 25px">
-
-                <button type="button" class="btn btn-info">Select Mass</button>
-                <button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    <span class="caret"></span>
-                    <span class="sr-only">Toggle Dropdown</span>
-                </button>
-                <ul class="dropdown-menu">
-                    @if (Model.pizzaQuantity >= 0)
-                    {
-
-                        @for (int actualMass = 0; actualMass < Model.oldMass.Count(); ++actualMass)
-
-                        {
-
-
-
-                            <li style="margin: 5px 5px" class="text-primary"><input type="checkbox" name="newMass" value="@Model.oldMass[actualMass]"> @Model.oldMass[actualMass].name</li>
-
-                        }
-                    }
-                </ul>
-            </div>
-            <div class="btn-group" style="margin-top: 25px">
-
-                <button type="button" class="btn btn-info">Select Toast Option</button>
-                <button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    <span class="caret"></span>
-                    <span class="sr-only">Toggle Dropdown</span>
-                </button>
-                <ul class="dropdown-menu">
-                    @if (Model.pizzaQuantity >= 0)
-                    {
-
-                        @for (int actualToastOption = 0; actualToastOption < Model.oldToastOption.Count(); ++actualToastOption)
-
-                        {
-
-
-
-                            <li style="margin: 5px 5px" class="text-primary"><input type="checkbox" name="newToastOption" value="@Model.oldToastOption[actualToastOption]"> @Model.oldToastOption[actualToastOption].name</li>
-
-                        }
-                    }
-                </ul>
-            </div>
-            @if (Model.pizzaQuantity > 0)
-            {
-                <div class="btn-group" style="margin-top: 25px">
-
-                    <button type="button" class="btn btn-info">Delete a Pizza</button>
-                    <button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        <span class="caret"></span>
-                        <span class="sr-only">Toggle Dropdown</span>
-                    </button>
-                    <ul class="dropdown-menu">
-
-                        <li role="separator" class="divider"></li>
-
-                        <li class="dropdown-header">position</li>
-                        <li role="separator" class="divider"></li>
-                        @for (int actual = 0; actual < Model.pizzaQuantity; ++actual)
-
-                        {
-
-
-
-                            <li style="margin: 5px 5px" class="text-primary"><input type="checkbox" name="deletePizzas" value="@actual"> @actual</li>
-
-                        }
-
-                    </ul>
-                </div>
-            }
-        </div>
-    </div>
-    <div class="container">
-        <div class="row">
-            <div class="col-md-3">
+            
+            <div class="col-md-2">
 
 
 
 
-                <input id="btnProce" type="submit" class="btn-primary" asp-page-handler="continue" value="Get price" style="width: 150px" />
+                <input id="btnloc" type="submit" class="btn-primary" asp-page-handler="Localization" value="Set localization" style="width: 150px" />
 
 
             </div>
-            <div class="col-md-3">
-                <input id="btnNewPizza" type="submit" class="btn-primary" asp-page-handler="new" value="Add another pizza" style="width: 150px" />
-            </div>
+            
         </div>
     </div>
 </form>

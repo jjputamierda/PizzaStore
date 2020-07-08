@@ -30,7 +30,8 @@ namespace PizzaStore.Pages
         [BindProperty]
         public List<string> newToastOption { set; get; }
 
-
+        [BindProperty]
+        public List<string> newSize { set; get; }
         [BindProperty]
         public List<IngredientModel> ingredients { set; get; }
 
@@ -39,7 +40,8 @@ namespace PizzaStore.Pages
         [BindProperty]
         public List<ToastOptionModel> toastOption { set; get; }
 
-
+        [BindProperty]
+        public List<SizeModel> size { set; get; }
 
         public List<IngredientModel> oldIngredients { set; get; }
 
@@ -51,13 +53,16 @@ namespace PizzaStore.Pages
 
         public List<ToastOptionModel> oldToastOption { set; get; }
 
-
+        public List<SizeModel> oldSize { set; get; }
         public IngredientController ingredientController { set; get; }
 
         public MassController massController { set; get; }
 
+        public SizeController sizeController { set; get; }
+
         public ToastOptionController toastOptionController { set; get; }
         public PizzaController pizzaController { set; get; }
+
         [BindProperty(SupportsGet = true)]
         public int orderComplete { set; get; }
 
@@ -72,12 +77,15 @@ namespace PizzaStore.Pages
             ingredientController = new IngredientController();
             massController = new MassController();
             toastOptionController = new ToastOptionController();
+            sizeController = new SizeController();
             newIngredients = new List<string>();
             newMass = new List<string>();
             newToastOption = new List<string>();
+            newSize = new List<string>();
             oldIngredients = ingredientController.InitIngredients();
             oldMass = massController.InitMass();
             oldToastOption = toastOptionController.InitToastOptions();
+            oldSize = sizeController.InitSizes();
             deletePizzas = new List<int>();
         }
         public void OnGet()
@@ -93,7 +101,7 @@ namespace PizzaStore.Pages
         public int Valid()
         {
             int isValid = 0;
-            if (ingredientController.VerifyIngredients(ingredients) == 1 && toastOptionController.VerifyToastOption(toastOption) == 1 && massController.VerifyMass(mass) == 1)
+            if (ingredientController.VerifyIngredients(ingredients) == 1 && toastOptionController.VerifyToastOption(toastOption) == 1 && massController.VerifyMass(mass) == 1 && sizeController.VerifySize(size) == 1)
             {
                 isValid = 1;
             }
@@ -121,9 +129,10 @@ namespace PizzaStore.Pages
             ingredients = ingredientController.NewIngredients(oldIngredients, newIngredients);
             toastOption = toastOptionController.NewToastOption(oldToastOption, newToastOption);
             mass = massController.NewMass(oldMass, newMass);
+            size = sizeController.NewSize(oldSize, newSize);
             if (Valid() == 1)
             {
-                PizzaModel pizza = pizzaController.InitPizza(ingredients, mass, toastOption);
+                PizzaModel pizza = pizzaController.InitPizza(ingredients, mass, toastOption,size);
                 pizzas = pizzaController.AddPizza(pizzas, pizza);
                 pizzaQuantity = pizzaQuantity + 1;
                 HttpContext.Session.SetComplexData("pizzas", pizzas);
@@ -164,10 +173,11 @@ namespace PizzaStore.Pages
             ingredients = ingredientController.NewIngredients(oldIngredients, newIngredients);
             toastOption = toastOptionController.NewToastOption(oldToastOption, newToastOption);
             mass = massController.NewMass(oldMass, newMass);
+            size = sizeController.NewSize(oldSize, newSize);
             orderComplete = 0;
-            if (Valid() == 1)
+            if (Valid() == 1 || pizzas.Count()>0)
             {
-                PizzaModel pizza = pizzaController.InitPizza(ingredients, mass, toastOption);
+                PizzaModel pizza = pizzaController.InitPizza(ingredients, mass, toastOption,size);
                 pizzas = pizzaController.AddPizza(pizzas, pizza);
                 pizzaQuantity = pizzaQuantity + 1;
                 HttpContext.Session.SetComplexData("pizzas", pizzas);
@@ -176,7 +186,7 @@ namespace PizzaStore.Pages
             }
             else
             {
-                AvisosInmediatos.Set(this, "Fail", "Please select only 1 mass and toast option and at least one ingredient", AvisosInmediatos.TipoAviso.Error);
+                AvisosInmediatos.Set(this, "Fail", "Please to have at least 1 pizza or select only 1 mass, toast option,size and at least one ingredient. ", AvisosInmediatos.TipoAviso.Error);
                 HttpContext.Session.SetComplexData("pizzas", pizzas);
 
                 return Redirect("/CrearPizza/" + pizzaQuantity + "/" + orderComplete);

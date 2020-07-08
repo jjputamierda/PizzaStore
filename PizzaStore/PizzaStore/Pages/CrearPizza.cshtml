@@ -6,7 +6,7 @@
 }
 
 <h1>Welcome to Pizza Store</h1>
-<h2>Please select at least 1 ingredient, mass and toast option for your pizza </h2>
+<h2>Please select at least 1 ingredient, mass, size and toast option for your pizza </h2>
 
 @if (AvisosInmediatos.Existe(Model, "Delete"))
 {
@@ -110,53 +110,87 @@
                         }
                     }
                 </ul>
-            </div>
-            @if (Model.pizzaQuantity > 0)
-            {
-                <div class="btn-group" style="margin-top: 25px">
+             </div>   
+            <div class="btn-group" style="margin-top: 25px">
 
-                    <button type="button" class="btn btn-info">Delete a Pizza</button>
-                    <button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        <span class="caret"></span>
-                        <span class="sr-only">Toggle Dropdown</span>
-                    </button>
-                    <ul class="dropdown-menu">
+                <button type="button" class="btn btn-info">Select Size</button>
+                <button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <span class="caret"></span>
+                    <span class="sr-only">Toggle Dropdown</span>
+                </button>
+                <ul class="dropdown-menu">
+                    @if (Model.pizzaQuantity >= 0)
+                    {
 
-                        <li role="separator" class="divider"></li>
-
-                        <li class="dropdown-header">position</li>
-                        <li role="separator" class="divider"></li>
-                        @for (int actual = 0; actual < Model.pizzaQuantity; ++actual)
+                        @for (int actualSize = 0; actualSize < Model.oldSize.Count(); ++actualSize)
 
                         {
-                            int actualIm = actual + 1;
 
 
-                            <li style="margin: 5px 5px" class="text-primary"><input type="checkbox" name="deletePizzas" value="@actual"> @actualIm</li>
+
+                            <li style="margin: 5px 5px" class="text-primary"><input type="checkbox" name="newSize" value="@Model.oldSize[actualSize].name"> @Model.oldSize[actualSize].name</li>
 
                         }
+                    }
+                </ul>
+            </div>    
+            
+            @if (Model.pizzaQuantity > 0)
+                {
+                    <div class="btn-group" style="margin-top: 25px">
 
-                    </ul>
-                </div>
-            }
+                        <button type="button" class="btn btn-info">Delete a Pizza</button>
+                        <button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <span class="caret"></span>
+                            <span class="sr-only">Toggle Dropdown</span>
+                        </button>
+                        <ul class="dropdown-menu">
+
+                            <li role="separator" class="divider"></li>
+
+                            <li class="dropdown-header">position</li>
+                            <li role="separator" class="divider"></li>
+                            @for (int actual = 0; actual < Model.pizzaQuantity; ++actual)
+
+                            {
+                                int actualIm = actual + 1;
+
+
+                                <li style="margin: 5px 5px" class="text-primary"><input type="checkbox" name="deletePizzas" value="@actual"> @actualIm</li>
+
+                            }
+
+                        </ul>
+                    </div>
+                }
+
+                
+
+
+
+        </div>
+    
+        <div class="row">
+
             <div class="btn-group" style="margin-top: 25px">
 
                 <input id="btnCon" type="submit" class="btn-primary" asp-page-handler="continue" value="Get price" style="width: 150px" />
             </div>
             <div class="btn-group" style="margin-top: 25px">
 
-                <input id="btnNewPizza" type="submit" class="btn-primary" asp-page-handler="new" value="Add another pizza" style="width: 150px" />
+                <input id="btnNewPizza" type="submit" class="btn-primary" asp-page-handler="new" value="Add Pizza" style="width: 150px" />
             </div>
+
             @if (Model.pizzaQuantity > 0)
             {
                 <div class="btn-group" style="margin-top: 25px">
 
-                    <input id="btnDeletePizza" type="submit" class="btn-primary" asp-page-handler="delete" value="Delete selected pizza" style="width: 150px" />
+                    <input id="btnDeletePizza" type="submit" class="btn-primary" asp-page-handler="delete" value="Delete Selected Pizza" style="width: 150px" />
                 </div>
             }
 
-
         </div>
+    
     </div>
 
 </form>

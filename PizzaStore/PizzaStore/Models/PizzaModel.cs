@@ -19,5 +19,9 @@ namespace PizzaStore.Models
         [BindProperty]
 
         public List<ToastOptionModel> toastOption { get; set; }
+
+        [BindProperty]
+
+        public List<SizeModel> size { get; set; }
     }
 }
