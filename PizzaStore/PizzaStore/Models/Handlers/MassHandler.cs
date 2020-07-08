@@ -23,7 +23,7 @@ namespace PizzaStore.Models.Handlers
             return answer;
         }
 
-        public double getPriceMass(List<MassModel> masses)
+        public double GetPriceMass(List<MassModel> masses)
         {
             double totalPrice = 0;
 

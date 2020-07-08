@@ -20,7 +20,7 @@ namespace PizzaStore.Models.Handlers
             return answer;
         }
 
-        public double getPriceIngredients(List<IngredientModel> ingredients)
+        public double GetPriceIngredients(List<IngredientModel> ingredients)
         {
             double totalPrice = 0;
             

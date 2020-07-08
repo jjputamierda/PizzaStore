@@ -12,7 +12,7 @@ namespace PizzaStore.Models.Handlers
         public ToastOptionHandler() {
         }
 
-        public int VerifyIngredients(List<ToastOptionModel> toastOptions) {
+        public int VerifyToastOption(List<ToastOptionModel> toastOptions) {
             int answer = 0;
             if (toastOptions.Count() > 0) {
                 answer = 1;
@@ -20,7 +20,7 @@ namespace PizzaStore.Models.Handlers
             return answer;
         }
 
-        public string getToastOptions(List<ToastOptionModel> toastOptions)
+        public string GetToastOptions(List<ToastOptionModel> toastOptions)
         {
            
             
