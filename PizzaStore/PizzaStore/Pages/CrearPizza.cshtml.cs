@@ -94,7 +94,7 @@ namespace PizzaStore.Pages
             HttpContext.Session.SetComplexData("orderComplete", orderComplete);
             if (orderComplete == 1)
             {
-                AvisosInmediatos.Set(this, "Complete", "The order has been completed", AvisosInmediatos.TipoAviso.Exito);
+                AvisosInmediatos.Set(this, "Complete", "The order has been completed, thank you for your purchasing", AvisosInmediatos.TipoAviso.Exito);
             }
         }
 
@@ -177,10 +177,13 @@ namespace PizzaStore.Pages
             orderComplete = 0;
             if (Valid() == 1 || pizzas.Count()>0)
             {
-                PizzaModel pizza = pizzaController.InitPizza(ingredients, mass, toastOption,size);
-                pizzas = pizzaController.AddPizza(pizzas, pizza);
-                pizzaQuantity = pizzaQuantity + 1;
-                HttpContext.Session.SetComplexData("pizzas", pizzas);
+                if (Valid() == 1)
+                {
+                    PizzaModel pizza = pizzaController.InitPizza(ingredients, mass, toastOption, size);
+                    pizzas = pizzaController.AddPizza(pizzas, pizza);
+                    pizzaQuantity = pizzaQuantity + 1;
+                }
+                    HttpContext.Session.SetComplexData("pizzas", pizzas);
 
                 return Redirect("/CalculatePrice/" + pizzaQuantity + "/" + orderComplete);
             }
