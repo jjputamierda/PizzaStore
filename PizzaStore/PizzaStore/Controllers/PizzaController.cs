@@ -20,11 +20,11 @@ namespace PizzaStore.Controllers
             
             return pizzaHandler.VerifyPizzas(pizzas);
         }
-        public PizzaModel InitPizza(List<IngredientModel> ingredientModels, List<MassModel> mass, List<ToastOptionModel> toastOptions)
+        public PizzaModel InitPizza(List<IngredientModel> ingredientModels, List<MassModel> mass, List<ToastOptionModel> toastOptions, List<SizeModel> size)
         {
 
 
-            return pizzaHandler.InitPizza(ingredientModels,mass,toastOptions);
+            return pizzaHandler.InitPizza(ingredientModels,mass,toastOptions,size);
 
 
         }
@@ -46,10 +46,10 @@ namespace PizzaStore.Controllers
 
         }
 
-        public double GetPricePizza(List<PizzaModel> pizzas, double priceIngredients, double priceMass)
+        public double GetPricePizza(List<PizzaModel> pizzas, IngredientController ingredientController, MassController massController,SizeController sizeController)
         {
           
-            return pizzaHandler.GetPricePizza(pizzas,priceIngredients,priceMass);
+            return pizzaHandler.GetPricePizza(pizzas,ingredientController,massController,sizeController);
         } 
     }
 
