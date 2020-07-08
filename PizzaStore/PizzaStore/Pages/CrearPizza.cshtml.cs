@@ -189,7 +189,7 @@ namespace PizzaStore.Pages
             }
             else
             {
-                AvisosInmediatos.Set(this, "Fail", "Please to have at least 1 pizza or select only 1 mass, toast option,size and at least one ingredient. ", AvisosInmediatos.TipoAviso.Error);
+                AvisosInmediatos.Set(this, "FailE", "Please have at least 1 pizza ordered or select only 1 mass, toast option,size and at least one ingredient. ", AvisosInmediatos.TipoAviso.Error);
                 HttpContext.Session.SetComplexData("pizzas", pizzas);
 
                 return Redirect("/CrearPizza/" + pizzaQuantity + "/" + orderComplete);

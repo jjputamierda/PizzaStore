@@ -32,6 +32,10 @@
 {
     @Html.Raw(AvisosInmediatos.Get(Model, "Fail"))
 }
+@if (AvisosInmediatos.Existe(Model, "FailE"))
+{
+    @Html.Raw(AvisosInmediatos.Get(Model, "FailE"))
+}
 @if (AvisosInmediatos.Existe(Model, "Done"))
 {
     @Html.Raw(AvisosInmediatos.Get(Model, "Done"))
