@@ -48,7 +48,7 @@ namespace PizzaStore.Pages
             ingredientController = new IngredientController();
             massController = new MassController();
             toastOptionController = new ToastOptionController();
-
+            sizeController = new SizeController();
         }
         public void OnGet()
         {
