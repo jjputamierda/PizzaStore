@@ -5,7 +5,19 @@
     ViewData["Title"] = "Create Pizza";
 }
 
-<h1>Welcome to Pizza Store</h1>
+
+<style>
+    #myImg1 {
+        height: 150px;
+        width: 150px;
+        float: right;
+    }
+</style>
+
+<img id="myImg1" src="~/images/pizza.svg" />
+
+
+<h1>Welcome to Pizza Store!</h1>
 <h2>Please select at least 1 ingredient, mass, size and toast option for your pizza </h2>
 
 @if (AvisosInmediatos.Existe(Model, "Delete"))
@@ -110,7 +122,7 @@
                         }
                     }
                 </ul>
-             </div>   
+            </div>
             <div class="btn-group" style="margin-top: 25px">
 
                 <button type="button" class="btn btn-info">Select Size</button>
@@ -133,43 +145,43 @@
                         }
                     }
                 </ul>
-            </div>    
-            
+            </div>
+
             @if (Model.pizzaQuantity > 0)
-                {
-                    <div class="btn-group" style="margin-top: 25px">
+            {
+                <div class="btn-group" style="margin-top: 25px">
 
-                        <button type="button" class="btn btn-info">Delete a Pizza</button>
-                        <button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            <span class="caret"></span>
-                            <span class="sr-only">Toggle Dropdown</span>
-                        </button>
-                        <ul class="dropdown-menu">
+                    <button type="button" class="btn btn-info">Delete a Pizza</button>
+                    <button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <span class="caret"></span>
+                        <span class="sr-only">Toggle Dropdown</span>
+                    </button>
+                    <ul class="dropdown-menu">
 
-                            <li role="separator" class="divider"></li>
+                        <li role="separator" class="divider"></li>
 
-                            <li class="dropdown-header">position</li>
-                            <li role="separator" class="divider"></li>
-                            @for (int actual = 0; actual < Model.pizzaQuantity; ++actual)
+                        <li class="dropdown-header">position</li>
+                        <li role="separator" class="divider"></li>
+                        @for (int actual = 0; actual < Model.pizzaQuantity; ++actual)
 
-                            {
-                                int actualIm = actual + 1;
+                        {
+                            int actualIm = actual + 1;
 
 
-                                <li style="margin: 5px 5px" class="text-primary"><input type="checkbox" name="deletePizzas" value="@actual"> @actualIm</li>
+                            <li style="margin: 5px 5px" class="text-primary"><input type="checkbox" name="deletePizzas" value="@actual"> @actualIm</li>
 
-                            }
+                        }
 
-                        </ul>
-                    </div>
-                }
+                    </ul>
+                </div>
+            }
 
-                
+
 
 
 
         </div>
-    
+
         <div class="row">
 
             <div class="btn-group" style="margin-top: 25px">
@@ -190,7 +202,13 @@
             }
 
         </div>
-    
+
     </div>
 
 </form>
+
+
+
+
+
+
