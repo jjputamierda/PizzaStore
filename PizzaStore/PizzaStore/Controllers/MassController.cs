@@ -37,7 +37,11 @@ namespace PizzaStore.Controllers
 
 
         }
-
+        public List<MassModel> NewMass(List<MassModel> masses, List<string> names)
+        {
+            
+            return massHandler.NewMass(masses,names);
+        }
     }
 
 

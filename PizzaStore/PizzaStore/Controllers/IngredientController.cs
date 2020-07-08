@@ -35,7 +35,11 @@ namespace PizzaStore.Controllers
 
 
         }
-
+        public List<IngredientModel> NewIngredients(List<IngredientModel> ingredients, List<string> names)
+        {
+            
+            return ingredientHandler.NewIngredients(ingredients,names);
+        }
     }
 
 

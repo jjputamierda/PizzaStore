@@ -15,7 +15,11 @@ namespace PizzaStore.Controllers
             pizzaHandler = new PizzaHandler();
         }
 
-        
+        public int VerifyPizzas(List<PizzaModel> pizzas)
+        {
+            
+            return pizzaHandler.VerifyPizzas(pizzas);
+        }
         public PizzaModel InitPizza(List<IngredientModel> ingredientModels, List<MassModel> mass, List<ToastOptionModel> toastOptions)
         {
 
@@ -25,7 +29,7 @@ namespace PizzaStore.Controllers
 
         }
 
-        public List<PizzaModel> DeletePizza(List<PizzaModel> pizzas, int pos)
+        public List<PizzaModel> DeletePizza(List<PizzaModel> pizzas, List<int> pos)
         {
 
 
@@ -42,10 +46,10 @@ namespace PizzaStore.Controllers
 
         }
 
-        public double GetPricePizza(List<PizzaModel> pizzas, IngredientController ingredientController, MassController massController)
+        public double GetPricePizza(List<PizzaModel> pizzas, double priceIngredients, double priceMass)
         {
           
-            return pizzaHandler.GetPricePizza(pizzas,ingredientController,massController);
+            return pizzaHandler.GetPricePizza(pizzas,priceIngredients,priceMass);
         } 
     }
 
