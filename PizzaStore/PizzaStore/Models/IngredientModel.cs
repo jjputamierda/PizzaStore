@@ -5,15 +5,19 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace PizzaStore.Models.Models
+namespace PizzaStore.Models
 {
-    public class IngredienteModel
+    public class IngredientModel
     {
         [BindProperty]
-        public string  nombre{ get; set; }
+        public string name{ get; set; }
 
         [BindProperty]
 
-        public double precio { get; set; }
+        public double price { get; set; }
+
+        [BindProperty]
+
+        public string type { get; set; }
     }
 }
