@@ -18,6 +18,6 @@ namespace PizzaStore.Models
 
         [BindProperty]
 
-        public List<ToastOptionModel> tostOption { get; set; }
+        public List<ToastOptionModel> toastOption { get; set; }
     }
 }
