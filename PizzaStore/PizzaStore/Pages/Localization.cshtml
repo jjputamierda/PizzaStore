@@ -5,6 +5,17 @@
 }
 @using PizzaStore.Utilidades;
 
+<style>
+    #myImg1 {
+        height: 150px;
+        width: 150px;
+        float: right;
+    }
+</style>
+
+<img id="myImg1" src="~/images/pizza.svg" />
+<h1>Almost done!</h1>
+
 <h2>Please introduce your address to complete your order</h2>
 @if (AvisosInmediatos.Existe(Model, "Fail"))
 {
@@ -20,11 +31,11 @@
     </div>
     <div class="container">
         <div class="row">
-            <div class="col-md-2">
+            <div class="btn-group" style="margin-top: 25px">
                 <input id="btnCreate" type="submit" class="btn-primary" asp-page-handler="Return" value="Return" style="width: 150px" />
             </div>
 
-            <div class="col-md-2">
+            <div class="btn-group" style="margin-top: 25px">
 
 
 
