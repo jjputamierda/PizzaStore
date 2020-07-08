@@ -1,8 +1,42 @@
-﻿@page
+﻿@page "{pizzaQuantity?}/{orderComplete?}"
 @model PizzaStore.Pages.LocalizationModel
 @{
     ViewData["Title"] = "Localization";
 }
+@using PizzaStore.Utilidades;
 
-<h2>IntroducirDireccion</h2>
+<h2>Please introduce your address to complete your order</h2>
+@if (AvisosInmediatos.Existe(Model, "Fail"))
+{
+    @Html.Raw(AvisosInmediatos.Get(Model, "Fail"))
+}
+
+<form method="post">
+
+
+    <div class="form-group">
+
+        <input id="txtAddress" type="text" class="form-control" asp-for="address" />
+    </div>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-2">
+                <input id="btnCreate" type="submit" class="btn-primary" asp-page-handler="Return" value="Return" style="width: 150px" />
+            </div>
+
+            <div class="col-md-2">
+
+
+
+
+                <input id="btnloc" type="submit" class="btn-primary" asp-page-handler="Finish" value="Finish" style="width: 150px" />
+
+
+            </div>
+
+        </div>
+    </div>
+</form>
+
+
 
