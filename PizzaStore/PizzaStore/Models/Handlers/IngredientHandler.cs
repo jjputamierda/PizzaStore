@@ -20,6 +20,29 @@ namespace PizzaStore.Models.Handlers
             return answer;
         }
 
+
+        public List<IngredientModel> NewIngredients(List<IngredientModel> ingredients, List<string> names)
+        {
+            List<IngredientModel> newIngredients = new List<IngredientModel>();
+            int i = 0;
+            foreach (var ingredient in ingredients)
+            {
+                if (i < names.Count()) {
+                    if (ingredient.name == names[i])
+                    {
+                        IngredientModel ing = new IngredientModel();
+                        ing.name = ingredient.name;
+                        ing.price = ingredient.price;
+                        ing.type = ingredient.type;
+                        newIngredients.Add(ing);
+                        i++;
+                    }
+                }
+                
+            }
+            return newIngredients;
+        }
+
         public double GetPriceIngredients(List<IngredientModel> ingredients)
         {
             double totalPrice = 0;
@@ -43,12 +66,13 @@ namespace PizzaStore.Models.Handlers
             new IngredientModel { name ="pepperoni", price = 620, type = "salty" },
             new IngredientModel { name ="chicken", price = 690, type = "salty" },
             new IngredientModel { name ="mushrooms", price = 650, type = "salty" },
-            new IngredientModel { name ="pineapple", price = 400, type = "sweet" },
+        
             new IngredientModel { name ="tomato", price = 500, type = "salty" },
             new IngredientModel { name ="onion", price = 650, type = "salty" },
             new IngredientModel { name ="parmesan cheese", price = 700, type = "salty" },
             new IngredientModel { name ="roman cheese", price = 660, type = "salty" },
             new IngredientModel { name ="mozzarella extra cheese", price = 700, type = "salty" },
+            new IngredientModel { name ="pineapple", price = 400, type = "sweet" },
             new IngredientModel { name ="chocolate", price = 500, type = "sweet" },
             new IngredientModel { name ="strawberries", price = 700, type = "sweet" },
             new IngredientModel { name ="nutella", price = 650, type = "sweet" },

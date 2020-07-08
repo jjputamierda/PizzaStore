@@ -13,10 +13,30 @@ namespace PizzaStore.Models.Handlers
         {
         }
 
+        public List<MassModel> NewMass(List<MassModel> masses, List<string> names) {
+            List<MassModel> newMass = new List<MassModel>();
+            int i = 0;
+            foreach (var mass in masses) {
+
+                if (i < names.Count())
+                {
+                    if (mass.name == names[i])
+                    {
+                        MassModel m = new MassModel();
+                        m.name = mass.name;
+                        m.price = mass.price;
+                        newMass.Add(m);
+                        i++;
+                    }
+                }
+            }
+            return newMass;
+        }
+
         public int VerifyMass(List<MassModel> masses)
         {
             int answer = 0;
-            if (masses.Count() > 0)
+            if (masses.Count() == 1)
             {
                 answer = 1;
             }

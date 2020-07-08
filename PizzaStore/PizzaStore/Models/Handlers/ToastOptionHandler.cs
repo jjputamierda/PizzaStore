@@ -14,7 +14,7 @@ namespace PizzaStore.Models.Handlers
 
         public int VerifyToastOption(List<ToastOptionModel> toastOptions) {
             int answer = 0;
-            if (toastOptions.Count() > 0) {
+            if (toastOptions.Count() ==1) {
                 answer = 1;
             }
             return answer;
@@ -27,6 +27,28 @@ namespace PizzaStore.Models.Handlers
 
             return toastOptions[0].name;
         }
+        public List<ToastOptionModel> NewToastOption(List<ToastOptionModel> toastOption, List<string> names)
+        {
+            List<ToastOptionModel> newToastOption = new List<ToastOptionModel>();
+            int i = 0;
+            foreach (var top in toastOption)
+            {
+                if (i < names.Count())
+                {
+
+                    if (top.name == names[i])
+                    {
+                        ToastOptionModel t = new ToastOptionModel();
+                        t.name = top.name;
+
+                        newToastOption.Add(t);
+                        i++;
+                    }
+                }
+            }
+            return newToastOption;
+        }
+
         public List<ToastOptionModel> InitToastOption()
         {
             List<ToastOptionModel> toastOption = new List<ToastOptionModel> {
