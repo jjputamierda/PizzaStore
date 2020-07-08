@@ -22,13 +22,13 @@ namespace PizzaStore.Models.Handlers
             }
             return answer;
         }
-        public PizzaModel InitPizza(List<IngredientModel> ingredientModels, List<MassModel> mass, List<ToastOptionModel> toastOptions)
+        public PizzaModel InitPizza(List<IngredientModel> ingredientModels, List<MassModel> mass, List<ToastOptionModel> toastOptions, List<SizeModel> size)
         {
             PizzaModel pizza = new PizzaModel();
             pizza.ingredients = ingredientModels;
             pizza.mass = mass;
             pizza.toastOption = toastOptions;
-
+            pizza.size = size;
             return pizza;
 
 
@@ -55,16 +55,17 @@ namespace PizzaStore.Models.Handlers
 
         }
 
-        public double GetPricePizza(List<PizzaModel> pizzas, double priceIngredient, double priceMass) {
+        public double GetPricePizza(List<PizzaModel> pizzas, IngredientController ingredientController, MassController massController, SizeController sizeController) {
             double price = 0;
             foreach(var pizza in pizzas)
             {
                 
-                price = priceIngredient + priceMass;
-                
+                price = ingredientController.GetPriceIngredients(pizza.ingredients) + price;
+                price = massController.GetPriceMass(pizza.mass) + price;
+                price = sizeController.GetPriceSize(pizza.size) + price;
             }
-            price = price + price * 0.3;
-            price = price + 13 * price;
+            price = price + price * 0.30;
+            price = price + 0.13 * price;
             return price;
         } 
     }
